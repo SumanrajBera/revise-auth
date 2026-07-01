@@ -1,14 +1,20 @@
 import { app } from "./src/app";
 import { appConfig } from "./src/config/appConfig";
-import { conntectToDB } from "./src/config/database";
+import { connectToDB } from "./src/config/database";
 
-const port = process.env.port || appConfig.PORT
+const port = process.env.PORT || appConfig.PORT
 
-try {
-    conntectToDB()
-    app.listen(port, () => {
-        console.log("Server is running...")
-    })
-} catch (err) {
-    throw new Error("Server configuration issue")
+async function startServer() {
+    try {
+        await connectToDB();
+
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
+        });
+    } catch (err) {
+        console.error("Server configuration issue", err);
+        process.exit(1);
+    }
 }
+
+startServer()
