@@ -1,6 +1,6 @@
-import { app } from "./src/app";
-import { appConfig } from "./src/config/appConfig";
-import { connectToDB } from "./src/config/database";
+import { app } from "./src/app.js";
+import { appConfig } from "./src/config/appConfig.js";
+import { connectToDB } from "./src/config/database.js";
 
 const port = process.env.PORT || appConfig.PORT
 
