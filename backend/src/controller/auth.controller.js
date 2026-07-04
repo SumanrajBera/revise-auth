@@ -20,14 +20,14 @@ export const loginController = async (req, res, next) => {
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: appConfig.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: appConfig.NODE_ENV === "production" ? "strict": "lax",
             maxAge: 5 * 60 * 1000
         })
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: appConfig.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: appConfig.NODE_ENV === "production" ? "strict": "lax",
             maxAge: 24 * 60 * 60 * 1000
         })
 
