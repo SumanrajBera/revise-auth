@@ -1,5 +1,4 @@
 import { appConfig } from "../config/appConfig.js";
-import { userModel } from "../model/user.model.js";
 import { loginService, registerService } from "../services/auth.service.js";
 
 export const registerController = async (req, res, next) => {

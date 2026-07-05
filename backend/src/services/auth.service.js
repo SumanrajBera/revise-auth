@@ -1,5 +1,6 @@
-import { AppError } from "../error/appError"
-import { generateAccessToken, generateRefreshToken } from "../utils/generateToken"
+import { AppError } from "../error/appError.js"
+import { userModel } from "../model/user.model.js"
+import { generateAccessToken, generateRefreshToken } from "../utils/generateToken.js"
 
 export const registerService = async (data) => {
     const { username, email, password } = data

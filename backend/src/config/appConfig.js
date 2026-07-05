@@ -22,5 +22,5 @@ export const appConfig = {
     MONGO_URI: process.env.MONGO_URI,
     JWT_SECRET: process.env.JWT_SECRET,
     NODE_ENV: process.env.NODE_ENV,
-    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGINS.split(",")
+    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN.split(",")
 }

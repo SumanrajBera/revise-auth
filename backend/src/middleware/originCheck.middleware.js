@@ -1,7 +1,7 @@
 import { appConfig } from "../config/appConfig";
 import { AppError } from "../error/appError";
 
-// 
+// With origins given or for development not checking
 export const verifyOrigin = (req, res, next) => {
     const { origin } = req.headers;
     if (appConfig.NODE_ENV !== "production") return next()

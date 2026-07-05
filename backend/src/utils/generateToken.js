@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { appConfig } from '../config/appConfig.js';
 
 export const generateAccessToken = function (userInfo) {
     const { _id } = userInfo;
