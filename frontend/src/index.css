@@ -1,10 +1,7 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import "tailwindcss";
 
-body {
-  background-color: #0c0c0c;
-  color: #fff;
+@layer base {
+    body {
+        @apply bg-taupe-300 min-h-dvh
+    }
 }
