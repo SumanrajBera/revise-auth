@@ -1,6 +1,8 @@
+import { appConfig } from "../config/appConfig.js"
 import { AppError } from "../error/appError.js"
 import { userModel } from "../model/user.model.js"
 import { generateAccessToken, generateRefreshToken } from "../utils/generateToken.js"
+import jwt from 'jsonwebtoken'
 
 export const registerService = async (data) => {
     const { username, email, password } = data
@@ -45,4 +47,18 @@ export const loginService = async (data) => {
     return {
         accessToken, refreshToken
     }
+}
+
+export const refreshTokenService = async (data) => {
+    const token = data;
+
+    if (!token) throw new AppError("Please! Log in.", 409)
+
+    const decoded = jwt.verify(token, appConfig.JWT_SECRET);
+
+    if (!decoded) throw new AppError("Please! Log in.", 409)
+
+    const accessToken = generateAccessToken(decoded.userId)
+    
+    return accessToken
 }

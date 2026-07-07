@@ -19,19 +19,38 @@ export const loginController = async (req, res, next) => {
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: appConfig.NODE_ENV === "production",
-            sameSite: appConfig.NODE_ENV === "production" ? "strict": "lax",
+            sameSite: appConfig.NODE_ENV === "production" ? "strict" : "lax",
             maxAge: 5 * 60 * 1000
         })
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: appConfig.NODE_ENV === "production",
-            sameSite: appConfig.NODE_ENV === "production" ? "strict": "lax",
+            sameSite: appConfig.NODE_ENV === "production" ? "strict" : "lax",
             maxAge: 24 * 60 * 60 * 1000
         })
 
         return res.status(200).json({
             message: "Log in successful"
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+export const refreshTokenController = async (req, res, next) => {
+    try {
+        const accessToken = await refreshTokenService(req.cookies.refreshToken);
+
+        res.cookie("accessToken", accessToken, {
+            httpOnly: true,
+            secure: appConfig.NODE_ENV === "production",
+            sameSite: appConfig.NODE_ENV === "production" ? "strict" : "lax",
+            maxAge: 5 * 60 * 1000
+        })
+
+        return res.status(200).json({
+            message: "Authentication Done"
         })
     } catch (err) {
         next(err)
